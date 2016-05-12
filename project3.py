@@ -14,8 +14,6 @@ where cluster_list is a 2D list of clusters in the plane
 import math
 import alg_cluster
 
-
-
 ######################################################
 # Code for closest pairs of clusters
 
@@ -43,14 +41,14 @@ def slow_closest_pair(cluster_list):
     clusters cluster_list[idx1] and cluster_list[idx2] have minimum distance
     dist.
     """
-    cluster_dist_tuple = (float("inf"), -1, -1)
+    dist_tuple = (float("inf"), -1, -1)
     for cluster1 in range(0, len(cluster_list)):
         for cluster2 in range(cluster1 + 1, len(cluster_list)):
             dist = pair_distance(cluster_list, cluster1, cluster2)
-            if dist[0] < cluster_dist_tuple[0]:
-                cluster_dist_tuple = (dist, cluster1, cluster2)
+            if dist[0] < dist_tuple[0]:
+                dist_tuple = dist
 
-    return cluster_dist_tuple
+    return dist_tuple
 
 
 
@@ -64,8 +62,30 @@ def fast_closest_pair(cluster_list):
     Output: tuple of the form (dist, idx1, idx2) where the centers of the clusters
     cluster_list[idx1] and cluster_list[idx2] have minimum distance dist.
     """
+    clusters_len = len(cluster_list)
 
-    return ()
+    if clusters_len <= 3:
+        dist_tuple = slow_closest_pair(cluster_list)
+    else:
+        half_len = clusters_len / 2
+        fcp1 = cluster_list[0 : half_len]
+        fcp2 = cluster_list[half_len:]
+        fcp_dist_tup1 = fast_closest_pair(fcp1)
+        fcp_dist_tup2 = fast_closest_pair(fcp2)
+        if fcp_dist_tup1[0] <= fcp_dist_tup2[0]:
+            dist_tuple = fcp_dist_tup1
+        else:
+            dist_tuple = (fcp_dist_tup2[0],
+                fcp_dist_tup2[1] + half_len,
+                fcp_dist_tup2[2] + half_len)
+        cl1_end = cluster_list[half_len - 1].horiz_center()
+        cl2_begin = cluster_list[half_len].horiz_center()
+        mid = (cl1_end + cl2_begin) / 2
+        cps_dist_tup = closest_pair_strip(cluster_list, mid, dist_tuple[0])
+        if dist_tuple[0] > cps_dist_tup[0]:
+            dist_tuple = cps_dist_tup
+
+    return dist_tuple
 
 
 def closest_pair_strip(cluster_list, horiz_center, half_width):
@@ -82,7 +102,20 @@ def closest_pair_strip(cluster_list, horiz_center, half_width):
     minimum distance dist.
     """
 
-    return ()
+    strip = []
+    for cluster in range(0, len(cluster_list)):
+        if abs(cluster_list[cluster].horiz_center() - horiz_center) < half_width:
+            strip.append(cluster)
+    strip.sort(key = lambda cluster: cluster_list[cluster].vert_center())
+    len_strip = len(strip)
+    dist_tuple = (float("inf"), -1, -1)
+    for point1 in range(0, len_strip - 1):
+        for point2 in range(point1 + 1, min(point1 + 4, len_strip)):
+            dist = pair_distance(cluster_list, strip[point1], strip[point2])
+            if dist_tuple[0] > dist[0]:
+                dist_tuple = dist
+
+    return dist_tuple
 
 
 
