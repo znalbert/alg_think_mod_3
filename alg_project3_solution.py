@@ -51,7 +51,6 @@ def slow_closest_pair(cluster_list):
     return dist_tuple
 
 
-
 def fast_closest_pair(cluster_list):
     """
     Compute the distance between the closest pair of clusters in a list (fast)
@@ -62,6 +61,7 @@ def fast_closest_pair(cluster_list):
     Output: tuple of the form (dist, idx1, idx2) where the centers of the clusters
     cluster_list[idx1] and cluster_list[idx2] have minimum distance dist.
     """
+    cluster_list.sort(key = lambda cluster: cluster.horiz_center())
     clusters_len = len(cluster_list)
 
     if clusters_len <= 3:
@@ -132,8 +132,11 @@ def hierarchical_clustering(cluster_list, num_clusters):
     Output: List of clusters whose length is num_clusters
     """
 
-    return []
-
+    while len(cluster_list) > num_clusters:
+        closest = fast_closest_pair(cluster_list)
+        to_merge = cluster_list.pop(closest[2])
+        cluster_list[closest[1]].merge_clusters(to_merge)
+    return cluster_list
 
 ######################################################################
 # Code for k-means clustering
