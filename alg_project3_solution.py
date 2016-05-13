@@ -154,4 +154,26 @@ def kmeans_clustering(cluster_list, num_clusters, num_iterations):
 
     # position initial clusters at the location of clusters with largest populations
 
-    return []
+    len_clusters = len(cluster_list)
+
+    centers = list(cluster_list)
+    centers.sort(key = lambda cluster: cluster.total_population(), reverse=True)
+    centers = centers[0:num_clusters]
+
+    for _ in range(num_iterations):
+        new_clusters = [alg_cluster.Cluster(set([]), 0, 0, 0, 0) for _ in range(num_clusters)]
+
+        for cluster in range(len_clusters):
+            dist_center = float("inf")
+            num_center = -1
+            for center in range(len(centers)):
+                dist = cluster_list[cluster].distance(centers[center])
+                if dist < dist_center:
+                    dist_center = dist
+                    num_center = center
+            new_clusters[num_center].merge_clusters(cluster_list[cluster])
+
+        for center in range(len(centers)):
+            centers[center] = new_clusters[center]
+
+    return centers
