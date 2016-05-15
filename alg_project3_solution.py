@@ -13,6 +13,9 @@ where cluster_list is a 2D list of clusters in the plane
 
 import math
 import alg_cluster
+import random
+import time
+import matplotlib.pyplot as plt
 
 ######################################################
 # Code for closest pairs of clusters
@@ -177,3 +180,37 @@ def kmeans_clustering(cluster_list, num_clusters, num_iterations):
             centers[center] = new_clusters[center]
 
     return centers
+
+
+#########################################################################
+# Assignment Question 1
+
+def gen_random_clusters(num_clusters):
+    """ int -> list
+    Create list of clusters where each cluster corresponds to one randomly
+    generated point in the square (+/-1, +/-1).
+    """
+    clusters = []
+    for center in range(num_clusters):
+        x_val = random.uniform(-1, 1)
+        y_val = random.uniform(-1, 1)
+        new_cluster = alg_cluster.Cluster(set([]), x_val, y_val, 0, 0)
+        clusters.append(new_cluster)
+
+    return clusters
+
+
+def run_times(closest_pair_function):
+    """ function -> list
+    Creates a list of run times for a range of input sizes from 2 to 200 for a
+    given function.
+    """
+    times = []
+    for input_size in range(2, 200):
+        cluster_list = gen_random_clusters(input_size)
+        start_time = time.time()
+        closest_pair_function(cluster_list)
+        end_time = time.time()
+        times.append(end_time - start_time)
+
+    return times
