@@ -34,8 +34,8 @@ Plot of k-means data for the 111 counties with the highest cancer rates clustere
 
 Looking at the west coast we can already see some issues with the k-means graph clustering because of the initial given population centers in southern California should be one cluster and not two.  Mathematically, we can compute the distortion as the sum of the error for each cluster.  So, for the two plots we find that:
 
-* Hierarchical Distortion: 1.752 x 10^11
-* K-means Distortion: 2.712 x 10^11
+* Hierarchical Distortion: 1.752 x 10<sup>11</sup>
+* K-means Distortion: 2.712 x 10<sup>11</sup>
 
 Which leads me to believe that k-means requires a greater level of trial-and-error from a human trying to find a good set of starting points, whereas hierarchical can be left to run on its own, at least for this small dataset.
 
