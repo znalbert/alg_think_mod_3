@@ -214,3 +214,23 @@ def run_times(closest_pair_function):
         times.append(end_time - start_time)
 
     return times
+
+
+########################################################################
+# Assignment Question 7
+
+def make_data_list(data_table):
+    singleton_list = []
+    for line in data_table:
+        singleton_list.append(alg_cluster.Cluster(set([line[0]]), line[1], line[2], line[3], line[4]))
+    return singleton_list
+
+
+def compute_distortion(cluster_list, data_table):
+
+    distortion = 0
+    for cluster in cluster_list:
+        error = cluster.cluster_error(data_table)
+        distortion += error
+
+    return distortion

@@ -1,0 +1,8 @@
+Which clustering method is faster when the number of output clusters is either a small fixed number or a small fraction of the number of input clusters? Provide a short explanation in terms of the asymptotic running times of both methods. You should assume that hierarchical_clustering uses fast_closest_pair and that k-means clustering always uses a small fixed number of iterations.
+
+
+K-means clustering is far faster.
+
+Asymptotically, we already know from the homework that fast_closest_pair requires O(n*log^2(n)), and because we're dealing with a small k value we effectively are doing the fast_closest_pair n times, meaning that hierarchical_clustering is operating around O(n^2 * log^2(n)).
+
+For kmeans_clustering if we're dealing with a small k value we're only going to do O(n) work because of the operation in line 5 of the pseudo-code.

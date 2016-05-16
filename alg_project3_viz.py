@@ -99,14 +99,14 @@ def run_example():
     for line in data_table:
         singleton_list.append(alg_cluster.Cluster(set([line[0]]), line[1], line[2], line[3], line[4]))
 
-    #cluster_list = sequential_clustering(singleton_list, 15)
-    #print "Displaying", len(cluster_list), "sequential clusters"
+    # cluster_list = sequential_clustering(singleton_list, 15)
+    # print "Displaying", len(cluster_list), "sequential clusters"
 
-    cluster_list = alg_project3_solution.hierarchical_clustering(singleton_list, 9)
-    print "Displaying", len(cluster_list), "hierarchical clusters"
+    # cluster_list = alg_project3_solution.hierarchical_clustering(singleton_list, 9)
+    # print "Displaying", len(cluster_list), "hierarchical clusters"
 
-    #cluster_list = alg_project3_solution.kmeans_clustering(singleton_list, 9, 5)
-    #print "Displaying", len(cluster_list), "k-means clusters"
+    cluster_list = alg_project3_solution.kmeans_clustering(singleton_list, 9, 5)
+    print "Displaying", len(cluster_list), "k-means clusters"
 
 
     # draw the clusters using matplotlib or simplegui
@@ -116,4 +116,4 @@ def run_example():
     else:
         alg_clusters_simplegui.PlotClusters(data_table, cluster_list)   # use toggle in GUI to add cluster centers
 
-run_example()
+#run_example()

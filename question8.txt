@@ -1,0 +1,7 @@
+Examine the clusterings generated in Questions 5 and 6. In particular, focus your attention on the number and shape of the clusters located on the west coast of the USA.
+
+Describe the difference between the shapes of the clusters produced by these two methods on the west coast of the USA. What caused one method to produce a clustering with a much higher distortion? To help you answer this question, you should consider how k-means clustering generates its initial clustering in this case.
+
+Both methods form three clusters on the west coast of the US.  However, since the west coast of the US has some large population centers our method of defining the initial clusters for K-means clustering predisposed our clusters to be centered on those population centers in the south, which led to two clusters in the south and the northern cluster covering a rather large area.
+
+The iterative nature of the hierarchical clustering focusing on the closest centers and merging those allowed for it to have a lower distortion and for the clusters to better occupy their own individual regions such that there is a northern, a central, and a southern cluster.

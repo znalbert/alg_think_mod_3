@@ -1,0 +1,7 @@
+For each data set (111, 290, and 896 counties), does one clustering method consistently produce lower distortion clusterings when the number of output clusters is in the range 6 to 20? Is so, indicate on which data set(s) one method is superior to the other.
+
+For 111 hierarchical_clustering consistently had lower distortion.
+
+For 290 there were a couple points where k-means clustering had lower distortion, but for the majority of the time hierarchical had lower distortion.
+
+For 896 the distortion seemed to bounce back and forth between the two clustering methods.
