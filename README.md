@@ -52,4 +52,4 @@ Plot of distortions for 6 to 20 clusters on 290 counties.
 Plot of distortions for 6 to 20 clusters on 896 counties.
 ![Plot of Distortions for 896 Plot](https://raw.githubusercontent.com/znalbert/alg_think_mod_3/master/img/distortions_896.png)
 
-Initially, the hierarchical method clearly has the lower distortion, but as the dataset size increases we that strength virtually evaporate.  Considering that I think scalability is important, I think that both the aspect of function speed and the positive trend in distortion values as dataset size increases would lead me to choose k-means as the superior clustering method.
+Initially, the hierarchical method clearly has the lower distortion, but as the dataset size increases we see that strength virtually evaporate.  Considering that I think scalability is important, I think that both the aspect of function speed and the positive trend in distortion values as dataset size increases would lead me to choose k-means as the superior clustering method.
