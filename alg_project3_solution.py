@@ -220,6 +220,9 @@ def run_times(closest_pair_function):
 # Assignment Question 7
 
 def make_data_list(data_table):
+    """ table -> list
+    Creates a list of cluster objects from raw table data.
+    """
     singleton_list = []
     for line in data_table:
         singleton_list.append(alg_cluster.Cluster(set([line[0]]), line[1], line[2], line[3], line[4]))
@@ -227,7 +230,10 @@ def make_data_list(data_table):
 
 
 def compute_distortion(cluster_list, data_table):
-
+    """ list, table -> float
+    Returns a distortion value for a list of clusters and the original table
+    data.
+    """
     distortion = 0
     for cluster in cluster_list:
         error = cluster.cluster_error(data_table)

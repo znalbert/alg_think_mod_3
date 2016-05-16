@@ -1,3 +1,0 @@
-Based on your answer to Question 8, which method (hierarchical clustering or k-means clustering) requires less human supervision to produce clusterings with relatively low distortion?
-
-Hierarchical needs less human supervision as it's process is more likely to group similar items, while k-means needs requires a good methodology to determine the set of initial clusters in order to get less distortion which could be a trial-and-error process for a human involved.

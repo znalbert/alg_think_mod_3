@@ -12,6 +12,10 @@ kmeans_cluster_list = sol.make_data_list(data_table)
 
 
 def compute_hier_distortions(cluster_list):
+    """ list -> list
+    Takes a list of cluster objects and returns the list of distortions as that
+    list is further clustered from 20 down to 5 clusters.
+    """
     distortions = []
 
     for iteration in range(20, 5, -1):
@@ -24,6 +28,11 @@ def compute_hier_distortions(cluster_list):
 
 
 def compute_kmeans_distortions(cluster_list):
+    """ list -> list
+    Takes a list of cluster objects and iteratively clusters the data further,
+    while calculating the distortion at each iteration.  Returns a list of
+    distortion values.
+    """
     distortions = []
 
     for iteration in range(6, 21):
